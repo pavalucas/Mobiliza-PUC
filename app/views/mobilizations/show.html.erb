@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @mobilization.title %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @mobilization.category %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @mobilization.description %>
+</p>
+
+<p>
+  <strong>Mail content:</strong>
+  <%= @mobilization.mail_content %>
+</p>
+
+<%= link_to 'Edit', edit_mobilization_path(@mobilization) %> |
+<%= link_to 'Back', mobilizations_path %>

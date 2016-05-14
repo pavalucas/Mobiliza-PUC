@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :targets
+  resources :mobilizations
   get 'sessions/create'
 
   get 'sessions/destroy'

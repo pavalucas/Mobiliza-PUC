@@ -1,0 +1,33 @@
+<%= form_for(@mobilization) do |f| %>
+  <% if @mobilization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mobilization.errors.count, "error") %> prohibited this mobilization from being saved:</h2>
+
+      <ul>
+      <% @mobilization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.number_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :mail_content %><br>
+    <%= f.text_area :mail_content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

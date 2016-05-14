@@ -1,0 +1,2 @@
+module MobilizationsHelper
+end
