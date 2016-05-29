@@ -30,8 +30,8 @@ class MobilizationsController < ApplicationController
 
     respond_to do |format|
       if @mobilization.save
-        #flash[:success] = "Mobilização criado!"
-        redirect_to root_url
+        format.html { redirect_to @group, notice: 'Turma criada com êxito.' }
+        format.json { render action: 'mostrar', status: :created, location: @group }
       else
         format.html { render :new }
         format.json { render json: @mobilization.errors, status: :unprocessable_entity }
