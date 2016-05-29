@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :targets
   resources :mobilizations
+  resources :users
 
   get 'sessions/create'
 
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match '/signin',  to: 'sessions#new',         via: 'get'
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 end
