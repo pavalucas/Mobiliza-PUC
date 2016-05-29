@@ -31,7 +31,7 @@ class MobilizationsController < ApplicationController
     respond_to do |format|
       if @mobilization.save
         #flash[:success] = "Mobilização criado!"
-        render 'shared/_user_mobilizations'
+        redirect_to root_url
       else
         format.html { render :new }
         format.json { render json: @mobilization.errors, status: :unprocessable_entity }

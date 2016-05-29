@@ -9,16 +9,6 @@
 
 <body>
 
-  <div id="user-widget">
-    <% if current_user %>
-      Welcome <strong><%= current_user.name %></strong>!
-      <%= link_to "Sign out", signout_path, id: "sign_out" %>
-    <% else %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-    <% end %>
-  </div>
-
-
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -56,9 +46,9 @@
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
             <li><%= link_to "Perfil" , current_user %></li>
-            <%= link_to "Sair", signout_path, id: "sign_out" %>
+            <li><%= link_to "Sair", signout_path, id: "sign_out" %></li>
           <% else %>
-            <%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %>
+            <li><%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %></li>
           <% end %>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
