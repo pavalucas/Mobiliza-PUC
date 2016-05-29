@@ -1,5 +1,5 @@
 class MobilizationsController < ApplicationController
-  before_action :set_mobilization, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:show, :edit, :update, :destroy]
 
   # GET /mobilizations
   # GET /mobilizations.json
@@ -70,5 +70,10 @@ class MobilizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
       params.require(:mobilization).permit(:title, :category, :description, :mail_content)
+    end
+
+    def signed_in_user
+      store_location
+      redirect_to signin_url, notice: "Você não está logado." unless signed_in?
     end
 end
