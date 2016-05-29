@@ -7,7 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<body> class="btn btn-primary btn-lg"
+
+  <div>
+    <% if signed_in? %>
+            <p><%= link_to "Sair", signout_path, id: "sign_out" %></p>
+    <% else %>
+            <p><%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %></p>
+    <% end %>
+  </div>
+
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -37,9 +46,6 @@
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
             <li><%= link_to "Perfil" , current_user %></li>
-            <li><%= link_to "Sair", signout_path, id: "sign_out" %></li>
-          <% else %>
-            <li><%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %></li>
           <% end %>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
