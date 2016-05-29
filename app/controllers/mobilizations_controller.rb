@@ -24,11 +24,11 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations
   # POST /mobilizations.json
   def create
-    @mobilization = current_user.mobilizations.find(mobilization_params)
+    @mobilization = current_user.mobilizations.build(mobilization_params)
 
     respond_to do |format|
       if @mobilization.save
-        flash[:success] = "Mobilização criado!"
+        #flash[:success] = "Mobilização criado!"
         redirect_to root_url
       else
         format.html { render :new }
