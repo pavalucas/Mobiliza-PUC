@@ -7,17 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 
-<div id="user-widget">
-  <% if current_user %>
-    Welcome <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
-</div>
-
 <body>
 
+  <div id="user-widget">
+    <% if current_user %>
+      Welcome <strong><%= current_user.name %></strong>!
+      <%= link_to "Sign out", signout_path, id: "sign_out" %>
+    <% else %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    <% end %>
+  </div>
 
   <div id="logo">
       Mobpuc
@@ -77,7 +76,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
