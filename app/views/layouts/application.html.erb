@@ -7,7 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<body> 
+
+  <div id="sign_in_out" align="right">
+    <p id="buttonSignI_O" class="btn btn-primary btn-lg">
+      <% if signed_in? %>
+              <%= link_to "Sair", signout_path, id: "sign_out" %>
+      <% else %>
+              <%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %>
+      <% end %>
+    </p>
+  </div>
+
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -37,15 +48,12 @@
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
             <li><%= link_to "Perfil" , current_user %></li>
-            <li><%= link_to "Sair", signout_path, id: "sign_out" %></li>
-          <% else %>
-            <li><%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %></li>
           <% end %>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Procurar mob">
             </div>
-            <button type="submit" class="btn btn-default">=></button>
+            <button type="submit" class="btn btn-default">-></button>
           </form>
         </ul>
       </div><!-- /.navbar-collapse -->
