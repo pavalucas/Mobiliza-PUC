@@ -25,6 +25,8 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations.json
   def create
     @mobilization = current_user.mobilizations.build(mobilization_params)
+    @user = current_user
+    @mobilizations = @user.mobilizations
 
     respond_to do |format|
       if @mobilization.save
