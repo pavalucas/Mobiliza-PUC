@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   match '/sobre', to: 'static_pages#sobre', via: 'get'
 
   #mobilization
-  match '/mobilizationnew', to: 'mobilization#new', via: 'get'
+  match '/mobilizationnew', to: 'mobilizations#new', via: 'get'
 
   #user
   match 'usershow', to: 'user#show', via: 'get'
@@ -25,6 +25,5 @@ Rails.application.routes.draw do
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
-  match '/signin',  to: 'sessions#new',         via: 'get'
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 end

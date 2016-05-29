@@ -37,16 +37,13 @@
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Crie <span class="sr-only">(current)</span></a></li> -->
           <% if signed_in? %>
-            <li><%= link_to "Perfil" , current_user %></li>
-            <li><%= link_to "Crie" , mobilizationnew_path %></li>
+            <li><%= link_to "Crie a sua mobilização" , mobilizationnew_path %></li>
           <%end%>
-          <li><a href="#">Regras de conduta</a></li>
-          <li><%= link_to "Sobre", sobre_path%></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
+              <li><a href="#">Regras de conduta</a></li>
+              <li><%= link_to "Sobre", sobre_path%></li>
               <li><a href="#">Something else here</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Separated link</a></li>
@@ -57,6 +54,12 @@
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
+          <% if signed_in? %>
+            <li><%= link_to "Perfil" , current_user %></li>
+            <%= link_to "Sair", signout_path, id: "sign_out" %>
+          <% else %>
+            <%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %>
+          <% end %>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Procurar mob">
