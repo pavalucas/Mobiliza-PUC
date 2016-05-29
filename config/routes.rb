@@ -16,12 +16,6 @@ Rails.application.routes.draw do
   #static pages
   match '/sobre', to: 'static_pages#sobre', via: 'get'
 
-  #mobilization
-  match '/mobilizationnew', to: 'mobilizations#new', via: 'get'
-
-  #user
-  match 'usershow', to: 'user#show', via: 'get'
-
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

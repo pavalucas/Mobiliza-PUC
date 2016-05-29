@@ -1,5 +1,5 @@
 class MobilizationsController < ApplicationController
-  before_action :signed_in_user, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :new, :create, :show]
 
   # GET /mobilizations
   # GET /mobilizations.json
@@ -10,8 +10,7 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations/1
   # GET /mobilizations/1.json
   def show
-    @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @mobilization = Mobilization.find(params[:id])
   end
 
   # GET /mobilizations/new
@@ -74,6 +73,6 @@ class MobilizationsController < ApplicationController
 
     def signed_in_user
       store_location
-      redirect_to "/auth/facebook", notice: "Você não está logado." unless signed_in?
+      redirect_to "/auth/facebook" unless signed_in?
     end
 end

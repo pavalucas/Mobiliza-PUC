@@ -6,9 +6,10 @@ class UsersController < ApplicationController
 	    @mobilizations = @user.mobilizations
   	end
 
-  	def signed_in_user
-      store_location
-      redirect_to "/auth/facebook", notice: "Você não está logado." unless signed_in?
-    end
+	private
+	  	def signed_in_user
+	      store_location
+	      redirect_to "/auth/facebook" unless signed_in?
+	    end
 
 end
