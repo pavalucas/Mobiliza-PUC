@@ -11,7 +11,10 @@
   <div>
     <div class="span8">
       <% if @user.mobilizations.any? %>
-        <h5>Mobilizações (<%= @mobilization_count %>) </h5>
+        <h3>Mobilizações (<%= @user.mobilizations.count %>)</h3>
+        <ol>
+          <%= render @mobilizations %>
+        </ol>
       <% end %>
     </div>
   </div>
