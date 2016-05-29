@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mobilizações</h1>
+<h1>Listing Mobilizations</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Título</th>
-      <th>Categoria</th>
-      <th>Descrição</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Description</th>
       <th>Mail content</th>
       <th colspan="3"></th>
     </tr>
@@ -20,9 +20,14 @@
         <td><%= mobilization.category %></td>
         <td><%= mobilization.description %></td>
         <td><%= mobilization.mail_content %></td>
+        <td><%= link_to 'Show', mobilization %></td>
+        <td><%= link_to 'Edit', edit_mobilization_path(mobilization) %></td>
+        <td><%= link_to 'Destroy', mobilization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= link_to 'New Mobilization', new_mobilization_path %>

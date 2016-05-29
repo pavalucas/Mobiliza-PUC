@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   	def signed_in_user
       store_location
-      redirect_to signin_url, notice: "Você não está logado." unless signed_in?
+      redirect_to "/auth/facebook", notice: "Você não está logado." unless signed_in?
     end
 
 end
