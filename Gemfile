@@ -4,6 +4,7 @@ ruby "2.3.0"
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 
+gem 'material_design_lite-rails'
 
 gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
