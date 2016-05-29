@@ -10,7 +10,9 @@
   </div>
   <div>
     <div class="span8">
-      
+      <% if @user.mobilizations.any? %>
+        <h3>Mobilizações</h3>
+      <% end %>
     </div>
   </div>
 </div>
