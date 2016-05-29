@@ -9,7 +9,7 @@
 
 <body> 
 
-  <div id="sign_in_out">
+  <div id="sign_in_out" align="right">
     <% if signed_in? %>
             <button type="button" class="btn btn-primary btn-lg"><%= link_to "Sair", signout_path, id: "sign_out" %></button>
     <% else %>
