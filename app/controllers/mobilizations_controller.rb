@@ -10,6 +10,8 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations/1
   # GET /mobilizations/1.json
   def show
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /mobilizations/new
@@ -25,17 +27,13 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations.json
   def create
     @mobilization = current_user.mobilizations.build(mobilization_params)
-    @user = current_user
-    @mobilizations = @user.mobilizations
 
-    respond_to do |format|
-      if @mobilization.save
-        format.html { redirect_to @mobilization, notice: 'Turma criada com êxito.' }
-        format.json { render action: 'mostrar', status: :created, location: @mobilization }
-      else
-        format.html { render :new }
-        format.json { render json: @mobilization.errors, status: :unprocessable_entity }
-      end
+    if @mobilization.save
+      flash[:success] = "Moblização criada!"
+      redirect_to root_url
+    else
+      format.html { render :new }
+      format.json { render json: @mobilization.errors, status: :unprocessable_entity }
     end
   end
 
