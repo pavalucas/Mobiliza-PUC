@@ -7,13 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body> class="btn btn-primary btn-lg"
+<body> 
 
   <div>
     <% if signed_in? %>
-            <p><%= link_to "Sair", signout_path, id: "sign_out" %></p>
+            <p class="btn btn-primary btn-lg"><%= link_to "Sair", signout_path, id: "sign_out" %></p>
     <% else %>
-            <p><%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %></p>
+            <p class="btn btn-primary btn-lg"><%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %></p>
     <% end %>
   </div>
 
