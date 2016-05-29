@@ -24,12 +24,12 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations
   # POST /mobilizations.json
   def create
-    @mobilization = Mobilization.new(mobilization_params)
+    @mobilization = current_user.mobilizations.find(mobilization_params)
 
     respond_to do |format|
       if @mobilization.save
-        format.html { redirect_to @mobilization, notice: 'Mobilization was successfully created.' }
-        format.json { render :show, status: :created, location: @mobilization }
+        flash[:success] = "Mobilização criado!"
+        redirect_to root_url
       else
         format.html { render :new }
         format.json { render json: @mobilization.errors, status: :unprocessable_entity }
