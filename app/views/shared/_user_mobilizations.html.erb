@@ -1,4 +1,5 @@
 <div class="row">
+  
   <div>
     <aside class="span4">
       <section>
@@ -8,15 +9,31 @@
       </section>
     </aside>
   </div>
+
   <div>
     <div class="span8">
       <% if @user.mobilizations.any? %>
-        <h3>Mobilizações (<%= @user.mobilizations.count %>)</h3>
+        <h3>Suas Mobilizações(<%= @user.mobilizations.count %>)</h3>
         <ol>
           <%= render @mobilizations %>
         </ol>
       <% end %>
     </div>
   </div>
+  
+  <div>
+    <% if @pressedMobs.any? %>
+      <h3>Mobilizações Pressionadas(<%= @pressedMobs.count %>)</h3>
+      <% @pressedMobs.each do |mobilization| %>
+        <li id="mobilization-<%= mobilization.id %>">
+          <span class="content"><%= mobilization.title %></span>
+          <span class="timestamp">
+            Postado há <%= time_ago_in_words(mobilization.created_at) %>
+          </span>
+        </li> 
+      <%end%>
+    <%end%>
+  </div>
+
 </div>
 

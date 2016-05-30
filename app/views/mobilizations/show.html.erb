@@ -19,6 +19,10 @@
   <strong>Mail content:</strong>
   <%= @mobilization.mail_content %>
 </p>
+<p>
+  <strong>Pressões:</strong>
+  <%= @mobilization.votes_for %>
+</p>
 
-<%= link_to 'Edit', edit_mobilization_path(@mobilization) %> |
-<%= link_to 'Back', mobilizations_path %>
+<%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put %> |
+<%= button_to 'Editar', edit_mobilization_path(@mobilization) %>

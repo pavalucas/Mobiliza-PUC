@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :targets
-  resources :mobilizations
+  resources :mobilizations do
+    member do
+      put 'press', to: 'mobilizations#press'
+    end
+  end
   resources :users
 
   get 'sessions/create'

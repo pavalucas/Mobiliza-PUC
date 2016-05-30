@@ -1,5 +1,5 @@
 class MobilizationsController < ApplicationController
-  before_action :signed_in_user, only: [:index, :new, :create, :show]
+  before_action :signed_in_user, only: [:new, :create, :show]
 
   # GET /mobilizations
   # GET /mobilizations.json
@@ -29,7 +29,7 @@ class MobilizationsController < ApplicationController
 
     if @mobilization.save
       flash[:success] = "Moblização criada!"
-      redirect_to root_url
+      redirect_to @mobilization
     else
       format.html { render :new }
       format.json { render json: @mobilization.errors, status: :unprocessable_entity }
@@ -58,6 +58,14 @@ class MobilizationsController < ApplicationController
       format.html { redirect_to mobilizations_url, notice: 'Mobilization was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def press
+    @mobilization = Mobilization.find(params[:id])
+    if !(current_user.voted_on? @mobilization) then
+      current_user.vote_for @mobilization
+    end
+    redirect_to @mobilization
   end
 
   private

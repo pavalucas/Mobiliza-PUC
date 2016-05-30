@@ -4,6 +4,13 @@ class UsersController < ApplicationController
 	def show
 	    @user = current_user
 	    @mobilizations = @user.mobilizations
+	    otherMobs = Mobilization.all - @mobilizations
+	    @pressedMobs = []
+	    otherMobs.each do |mob|
+	    	if (@user.voted_for? mob) then
+	    		@pressedMobs<< mob
+	    	end
+	    end
   	end
 
 	private
