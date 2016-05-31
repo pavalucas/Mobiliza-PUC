@@ -23,6 +23,12 @@
   <strong>Pressões:</strong>
   <%= @mobilization.votes_for %>
 </p>
+<p>
+  <strong>Alvos:</strong>
+  <% @mobilization.targets.each do |target| %>
+    <%= target.name %>
+  <% end %>
+</p>
 
 <%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put %> |
 <%= button_to 'Editar', edit_mobilization_path(@mobilization) %>

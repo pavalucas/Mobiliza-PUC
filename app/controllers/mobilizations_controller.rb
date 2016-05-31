@@ -28,7 +28,9 @@ class MobilizationsController < ApplicationController
     @mobilization = current_user.mobilizations.build(mobilization_params)
 
     if @mobilization.save
+      UserMailer.mobCreation_mail(@mobilization).deliver_now
       flash[:success] = "Moblização criada!"
+      current_user.vote_for @mobilization
       redirect_to @mobilization
     else
       format.html { render :new }
@@ -76,7 +78,7 @@ class MobilizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
-      params.require(:mobilization).permit(:title, :category, :description, :mail_content)
+      params.require(:mobilization).permit(:title, :category, :description, :mail_content, :target_ids => [])
     end
 
     def signed_in_user
