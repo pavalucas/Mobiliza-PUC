@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   #static pages
   match '/sobre', to: 'static_pages#sobre', via: 'get'
+  #match 'busca-por-categoria/:id/' => 'mobilizations#showByCategory', via: 'get'
+  match 'busca-por-categoria/:id' => 'mobilizations#showByCategory', via: 'get'
 
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]

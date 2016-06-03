@@ -1,6 +1,7 @@
 class MobilizationsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :show]
 
+  
   # GET /mobilizations
   # GET /mobilizations.json
   def index
@@ -69,6 +70,16 @@ class MobilizationsController < ApplicationController
     end
     redirect_to @mobilization
   end
+
+  def showByCategory
+    id = Integer(params[:id])
+    if id>=0 and id <4
+      @mobilizations = Mobilization.where(:category => id)
+    else
+      redirect_to "/"
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
