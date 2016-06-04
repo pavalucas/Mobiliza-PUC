@@ -62,7 +62,8 @@ class MobilizationsController < ApplicationController
     end
   end
 
-  def pressureAllTargetsFrom(@mobilization)
+  def pressureAllTargetsFrom(mobilization)
+    @mobilization = mobilization
     @mobilization.targets.each do |target|      
       UserMailer.pressure_mail(@mobilization, target).deliver_now
     end
@@ -78,7 +79,7 @@ class MobilizationsController < ApplicationController
     if (mob_pressures <= 50) and (mob_pressures%10 == 0) then
       pressureAllTargetsFrom @mobilization
     end
-    
+
     redirect_to @mobilization
   end
 
