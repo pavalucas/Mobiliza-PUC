@@ -1,10 +1,9 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "miguel.corti36@gmail.com"
+  default from: "mobpuc@mobiliza.com"
 
-  def mobCreation_mail(mobilization)
+  def pressure_mail(mobilization, target)
   	@mobilization = mobilization
-  	@mobilization.targets.each do |target|
-  		mail(to: target.email, subject: 'Você está sendo pressionado!')
-  	end
+  	@target = target
+  	mail(to: @target.email, subject: 'Você está sendo pressionado!')
   end
 end

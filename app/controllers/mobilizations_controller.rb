@@ -28,7 +28,9 @@ class MobilizationsController < ApplicationController
     @mobilization = current_user.mobilizations.build(mobilization_params)
 
     if @mobilization.save
-      UserMailer.mobCreation_mail(@mobilization).deliver_now
+      @mobilization.targets.each do |target|      
+        UserMailer.pressure_mail(@mobilization, target).deliver_now
+      end
       flash[:success] = "Moblização criada!"
       current_user.vote_for @mobilization
       redirect_to @mobilization
