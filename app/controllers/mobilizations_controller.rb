@@ -1,7 +1,7 @@
 class MobilizationsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :show]
+  $categories = ["Petição", "Reclamação", "Sugestão", "Outros"]
 
-  
   # GET /mobilizations
   # GET /mobilizations.json
   def index
@@ -12,7 +12,6 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations/1.json
   def show
     @mobilization = Mobilization.find(params[:id])
-    @goal = @mobilization.goal
   end
 
   # GET /mobilizations/new
