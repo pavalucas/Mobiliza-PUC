@@ -21,6 +21,7 @@ class MobilizationsController < ApplicationController
 
   # GET /mobilizations/1/edit
   def edit
+    @mobilization = Mobilization.find(params[:id])
   end
 
   # POST /mobilizations
