@@ -34,6 +34,14 @@
   <% end %>
 </p>
 
+<p>
+    <%= @mobilization.user_id%>
+</p>
+
+<p>
+    <%= @user.id %>
+</p>
+
 <%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put %>
 |
 <% if @mobilization.user_id == @user.id %>
