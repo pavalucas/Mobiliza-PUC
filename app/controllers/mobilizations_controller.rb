@@ -17,7 +17,11 @@ class MobilizationsController < ApplicationController
 
   # GET /mobilizations/new
   def new
-    @mobilization = Mobilization.new
+    if current_user.email.to_s == ''
+       redirect_to edit_user_path(current_user)
+    else
+      @mobilization = Mobilization.new
+    end
   end
 
   # GET /mobilizations/1/edit
@@ -28,20 +32,16 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations
   # POST /mobilizations.json
   def create
-    if current_user.email.to_s == ''
-      redirect_to edit_user_path(current_user)
-    else
-      @mobilization = current_user.mobilizations.build(mobilization_params)
+    @mobilization = current_user.mobilizations.build(mobilization_params)
 
-      if @mobilization.save
-        pressureAllTargetsFrom @mobilization
-        flash[:success] = "Moblização criada!"
-        current_user.vote_for @mobilization
-        redirect_to @mobilization
-      else
-        format.html { render :new }
-        format.json { render json: @mobilization.errors, status: :unprocessable_entity }
-      end
+    if @mobilization.save
+      pressureAllTargetsFrom @mobilization
+      flash[:success] = "Moblização criada!"
+      current_user.vote_for @mobilization
+      redirect_to @mobilization
+    else
+      format.html { render :new }
+      format.json { render json: @mobilization.errors, status: :unprocessable_entity }
     end
   end
 
@@ -49,7 +49,7 @@ class MobilizationsController < ApplicationController
   # PATCH/PUT /mobilizations/1.json
   def update
     @mobilization = Mobilization.find(params[:id])
-    
+
     if @mobilization.update_attributes(mobilization_params)
       flash[:success] = "Mobilização Atualizada"
       redirect_to @mobilization
@@ -112,6 +112,7 @@ class MobilizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
       params.require(:mobilization).permit(:title, :category, :description, :goal, :mail_content, :target_ids  => [])
+
     end
 
     def signed_in_user
