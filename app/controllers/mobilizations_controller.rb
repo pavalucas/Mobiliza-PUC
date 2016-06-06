@@ -27,30 +27,33 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations
   # POST /mobilizations.json
   def create
-    @mobilization = current_user.mobilizations.build(mobilization_params)
-
-    if @mobilization.save
-      pressureAllTargetsFrom @mobilization
-      flash[:success] = "Moblização criada!"
-      current_user.vote_for @mobilization
-      redirect_to @mobilization
+    if current_user.email.to_s == ''
+      redirect_to edit_user_path(current_user)
     else
-      format.html { render :new }
-      format.json { render json: @mobilization.errors, status: :unprocessable_entity }
+      @mobilization = current_user.mobilizations.build(mobilization_params)
+
+      if @mobilization.save
+        pressureAllTargetsFrom @mobilization
+        flash[:success] = "Moblização criada!"
+        current_user.vote_for @mobilization
+        redirect_to @mobilization
+      else
+        format.html { render :new }
+        format.json { render json: @mobilization.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /mobilizations/1
   # PATCH/PUT /mobilizations/1.json
   def update
-    respond_to do |format|
-      if @mobilization.update(mobilization_params)
-        format.html { redirect_to @mobilization, notice: 'Mobilization was successfully updated.' }
-        format.json { render :show, status: :ok, location: @mobilization }
-      else
-        format.html { render :edit }
-        format.json { render json: @mobilization.errors, status: :unprocessable_entity }
-      end
+    @mobilization = Mobilization.find(params[:id])
+    
+    if @mobilization.update_attributes(mobilization_params)
+      flash[:success] = "Mobilização Atualizada"
+      redirect_to @mobilization
+    else
+      render 'edit'
     end
   end
 
@@ -72,17 +75,21 @@ class MobilizationsController < ApplicationController
   end
 
   def press
-    @mobilization = Mobilization.find(params[:id])
-    if !(current_user.voted_on? @mobilization) then
-      current_user.vote_for @mobilization
-    end
+    if current_user.email.to_s == ''
+      redirect_to edit_user_path(current_user)
+    else
+      @mobilization = Mobilization.find(params[:id])
+      if !(current_user.voted_on? @mobilization) then
+        current_user.vote_for @mobilization
+      end
 
-    mob_pressures = @mobilization.votes_for
-    if (mob_pressures <= 50) and (mob_pressures%10 == 0) then
-      pressureAllTargetsFrom @mobilization
-    end
+      mob_pressures = @mobilization.votes_for
+      if (mob_pressures <= 50) and (mob_pressures%10 == 0) then
+        pressureAllTargetsFrom @mobilization
+      end
 
-    redirect_to @mobilization
+      redirect_to @mobilization
+    end
   end
 
   def showByCategory
