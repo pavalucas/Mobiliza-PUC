@@ -14,7 +14,7 @@
       <% if signed_in? %>
               <%= link_to "Sair", signout_path, id: "sign_out" %>
       <% else %>
-              <%= link_to "Entre com o Facebook", "/auth/facebook", id: "sign_in" %>
+              <%= link_to "Entre", "/auth/facebook", id: "sign_in" %>
       <% end %>
     </p>
   </div>
@@ -48,6 +48,7 @@
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
             <li><%= link_to "Perfil" , current_user %></li>
+            <li><%= link_to "Editar Perfil", edit_user_path(current_user) %></li>
           <% end %>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">

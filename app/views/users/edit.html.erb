@@ -1,0 +1,19 @@
+<% provide(:title, "Edição de Usuário") %>
+<h1>Edite seu Perfil</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :registration, "Matrícula" %>
+      <%= f.text_field :registration %>
+
+      <%= f.submit "Salvar alterações", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

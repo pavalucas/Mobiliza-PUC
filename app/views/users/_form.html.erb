@@ -1,0 +1,17 @@
+<%= form_for(@user) do |f| %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      
+      <%= f.label :email %>
+      <%= f.email_field :email, placeholder: "Escreva seu email" %>
+
+      <%= f.label :registration, "Matrícula" %>
+      <%= f.text_field :registration, placeholder: "Escreva sua matrícula"%>
+
+      <br><br>
+      
+      <%= f.submit "Criar Conta", class: "btn btn-lg btn-primary2" %>
+      
+    </div>
+  </div>
+<% end %>
