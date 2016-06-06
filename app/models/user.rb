@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-	has_many :mobilizations, dependent: :destroy
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, format:     { with: VALID_EMAIL_REGEX }
-    validates :registration, length: { maximum: 7, minimum: 7 }
+	# has_many :mobilizations, dependent: :destroy
+	# VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	# validates :email, format:     { with: VALID_EMAIL_REGEX }
+ #    validates :registration, length: { maximum: 7, minimum: 7 }
 	acts_as_voter
 	
 	def self.from_omniauth(auth)
