@@ -11,6 +11,7 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations/1
   # GET /mobilizations/1.json
   def show
+    @user = current_user
     @mobilization = Mobilization.find(params[:id])
   end
 
@@ -26,6 +27,9 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations/1/edit
   def edit
     @mobilization = Mobilization.find(params[:id])
+    if @mobilization.user_id != current_user.id
+      redirect_to @mobilization
+    end
   end
 
   # POST /mobilizations

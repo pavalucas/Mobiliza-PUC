@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Título:</strong>
   <%= @mobilization.title %>
 </p>
 
 <p>
-  <strong>Category:</strong>
+  <strong>Categoria:</strong>
   <%= @mobilization.category %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descrição:</strong>
   <%= @mobilization.description %>
 </p>
 
@@ -34,5 +34,8 @@
   <% end %>
 </p>
 
-<%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put %> |
-<%= button_to 'Editar', edit_mobilization_path(@mobilization),  method: :get %>
+<%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put %>
+|
+<% if @mobilization.user_id == @user.id %>
+  <%= button_to 'Editar', edit_mobilization_path(@mobilization),  method: :get %>
+<% end %>
