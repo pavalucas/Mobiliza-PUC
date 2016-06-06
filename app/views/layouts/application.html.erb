@@ -49,6 +49,11 @@
           <% if signed_in? %>
             <li><%= link_to "Perfil" , current_user %></li>
             <li><%= link_to "Editar Perfil", edit_user_path(current_user) %></li>
+            <% if current_user.email.to_s == '' %>
+              <h5><li>Antes de criar ou assinar uma mobilização clique em 'Editar Perfil' e
+                coloque seu email e matrícula!</li></h5>
+            <% end %>
+
           <% end %>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
