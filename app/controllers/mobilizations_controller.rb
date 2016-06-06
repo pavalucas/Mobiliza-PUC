@@ -38,7 +38,7 @@ class MobilizationsController < ApplicationController
     @mobilization = current_user.mobilizations.build(mobilization_params)
 
     if @mobilization.save
-      pressureAllTargetsFrom @mobilization
+      PressureTargetsJob.perform_later(@mobilization)
       flash[:success] = "Moblização criada!"
       current_user.vote_for @mobilization
       redirect_to @mobilization
@@ -70,13 +70,6 @@ class MobilizationsController < ApplicationController
     end
   end
 
-  def pressureAllTargetsFrom(mobilization)
-    @mobilization = mobilization
-    @mobilization.targets.each do |target|      
-      UserMailer.pressure_mail(@mobilization, target).deliver_now
-    end
-  end
-
   def press
     if current_user.email.to_s == ''
       redirect_to edit_user_path(current_user)
@@ -88,7 +81,7 @@ class MobilizationsController < ApplicationController
 
       mob_pressures = @mobilization.votes_for
       if (mob_pressures <= 50) and (mob_pressures%10 == 0) then
-        pressureAllTargetsFrom @mobilization
+        PressureTargetsJob.perform_later(@mobilization)
       end
 
       redirect_to @mobilization
