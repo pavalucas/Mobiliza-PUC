@@ -111,7 +111,7 @@ class MobilizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
-      params.require(:mobilization).permit(:title, :category, :description, :mail_content, :target_ids, :goal => [])
+      params.require(:mobilization).permit(:title, :category, :description, :goal, :mail_content, :target_ids  => [])
     end
 
     def signed_in_user
