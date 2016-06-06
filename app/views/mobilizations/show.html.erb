@@ -7,7 +7,12 @@
 
 <p>
   <strong>Categoria:</strong>
-  <%= @mobilization.category %>
+  <%= $categories[@mobilization.category] %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= $statuses[@mobilization.status] %>
 </p>
 
 <p>

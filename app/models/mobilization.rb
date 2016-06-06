@@ -5,4 +5,5 @@ class Mobilization < ActiveRecord::Base
 	acts_as_voteable
 	validates :goal, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 25 }
 	validates :category, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
+	validates :status, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
 end
