@@ -24,6 +24,11 @@
     <%= f.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= f.label :goal, "Meta" %><br>
+    <%= f.number_field :goal %>
+  </div>
+
   <div class = "field">
     <%= f.label "Alvos" %><br>
     <%= f.collection_select(:target_ids, Target.all, :id, :name, {}, {:multiple => true} ) %>

@@ -9,6 +9,7 @@
       <th>Category</th>
       <th>Description</th>
       <th>Mail content</th>
+      <th>Meta</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= mobilization.category %></td>
         <td><%= mobilization.description %></td>
         <td><%= mobilization.mail_content %></td>
+        <td><%= mobilization.goal %></td>
         <td><%= link_to 'Show', mobilization %></td>
         <td><%= link_to 'Edit', edit_mobilization_path(mobilization) %></td>
         <td><%= link_to 'Destroy', mobilization, method: :delete, data: { confirm: 'Are you sure?' } %></td>

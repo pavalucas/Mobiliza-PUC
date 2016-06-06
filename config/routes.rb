@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   #static pages
   match '/sobre', to: 'static_pages#sobre', via: 'get'
-  match '/Regras-de-conduta', to: 'static_pages#laws', via:'get'
+  match '/regras-de-conduta', to: 'static_pages#laws', via:'get'
   #match 'busca-por-categoria/:id/' => 'mobilizations#showByCategory', via: 'get'
   match 'busca-por-categoria/:id' => 'mobilizations#showByCategory', via: 'get'
 

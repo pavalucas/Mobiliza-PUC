@@ -12,6 +12,7 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations/1.json
   def show
     @mobilization = Mobilization.find(params[:id])
+    @goal = @mobilization.goal
   end
 
   # GET /mobilizations/new
@@ -110,7 +111,7 @@ class MobilizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
-      params.require(:mobilization).permit(:title, :category, :description, :mail_content, :target_ids => [])
+      params.require(:mobilization).permit(:title, :category, :description, :mail_content, :target_ids, :goal => [])
     end
 
     def signed_in_user
