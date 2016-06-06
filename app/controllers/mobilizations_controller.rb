@@ -40,8 +40,7 @@ class MobilizationsController < ApplicationController
       current_user.vote_for @mobilization
       redirect_to @mobilization
     else
-      format.html { render :new }
-      format.json { render json: @mobilization.errors, status: :unprocessable_entity }
+      render 'new'
     end
   end
 
