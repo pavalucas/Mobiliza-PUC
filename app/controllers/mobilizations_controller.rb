@@ -38,7 +38,8 @@ class MobilizationsController < ApplicationController
     @mobilization = current_user.mobilizations.build(mobilization_params)
 
     if @mobilization.save
-      PressureTargetsJob.perform_later(@mobilization)
+      Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
+      @mobilization.last_sent_email = DateTime.now - 1.day
       flash[:success] = "Moblização criada!"
       current_user.vote_for @mobilization
       redirect_to @mobilization
@@ -80,8 +81,10 @@ class MobilizationsController < ApplicationController
       end
 
       mob_pressures = @mobilization.votes_for
-      if (mob_pressures <= 50) and (mob_pressures%10 == 0) then
-        PressureTargetsJob.perform_later(@mobilization)
+      if (mob_pressures <= 50) and (mob_pressures%10 == 0) and (DateTime.now - 1.day > @mobilization.last_sent_email) then
+        Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
+      elsif mob_pressures == 51
+        Delayed::Job.enqueue(TwoDayPressureJob.new(@mobilization.id))
       end
 
       redirect_to @mobilization
