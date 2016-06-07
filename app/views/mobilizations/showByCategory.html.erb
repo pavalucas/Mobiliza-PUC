@@ -18,7 +18,8 @@
     <% @mobilizations.each do |mobilization| %>
       <tr>
         <td><%= mobilization.title %></td>
-        <td><%= mobilization.category %></td>
+        <td><%= $categories[mobilization.category] %></td>
+        <td><%= $statuses[mobilization.status] %></td>
         <td><%= mobilization.description %></td>
         <td><%= mobilization.mail_content %></td>
         <td><%= link_to 'Abrir', mobilization %> </td>

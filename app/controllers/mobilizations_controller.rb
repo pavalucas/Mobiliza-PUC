@@ -1,6 +1,7 @@
 class MobilizationsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :show]
   $categories = ["Petição", "Reclamação", "Sugestão", "Outros"]
+  $statuses = ["Em progresso", "Em pausa", "Terminada", "Inativa"]
 
   # GET /mobilizations
   # GET /mobilizations.json
@@ -109,7 +110,7 @@ class MobilizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
-      params.require(:mobilization).permit(:title, :category, :description, :goal, :mail_content, :target_ids  => [])
+      params.require(:mobilization).permit(:title, :category, :description, :status, :goal, :mail_content, :target_ids  => [])
 
     end
 

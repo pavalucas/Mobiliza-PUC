@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160607002002) do
     t.integer  "user_id"
     t.integer  "goal"
     t.datetime "last_sent_email"
+    t.integer  "status"
   end
 
   create_table "mobilizations_targets", id: false, force: :cascade do |t|
