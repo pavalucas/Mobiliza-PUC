@@ -40,6 +40,7 @@ class MobilizationsController < ApplicationController
 
     if @mobilization.save
       Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
+      UserMailer.delay.creation_mail(current_user)
       @mobilization.last_sent_email = DateTime.now - 1.day
       flash[:success] = "Moblização criada!"
       current_user.vote_for @mobilization
@@ -79,6 +80,7 @@ class MobilizationsController < ApplicationController
       @mobilization = Mobilization.find(params[:id])
       if !(current_user.voted_on? @mobilization) then
         current_user.vote_for @mobilization
+        UserMailer.delay.supportMob_mail(@mobilization, current_user)
       end
 
       mob_pressures = @mobilization.votes_for
