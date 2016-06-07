@@ -1,5 +1,9 @@
 class MobilizationsController < ApplicationController
-  before_action :signed_in_user, only: [:new, :create, :show]
+  before_action :signed_in_user, only: [:new, :create, :show, :press]
+  before_action :owner_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+  before_action :complete_user, only: [:new, :press]
+
   $categories = ["Petição", "Reclamação", "Sugestão", "Outros"]
   $statuses = ["Em progresso", "Em pausa", "Terminada", "Inativa"]
 
@@ -18,19 +22,12 @@ class MobilizationsController < ApplicationController
 
   # GET /mobilizations/new
   def new
-    if current_user.email.to_s == ''
-       redirect_to edit_user_path(current_user)
-    else
-      @mobilization = Mobilization.new
-    end
+    @mobilization = Mobilization.new
   end
 
   # GET /mobilizations/1/edit
   def edit
     @mobilization = Mobilization.find(params[:id])
-    if @mobilization.user_id != current_user.id
-      redirect_to @mobilization
-    end
   end
 
   # POST /mobilizations
@@ -74,24 +71,20 @@ class MobilizationsController < ApplicationController
   end
 
   def press
-    if current_user.email.to_s == ''
-      redirect_to edit_user_path(current_user)
-    else
-      @mobilization = Mobilization.find(params[:id])
-      if !(current_user.voted_on? @mobilization) then
-        current_user.vote_for @mobilization
-        UserMailer.delay.supportMob_mail(@mobilization, current_user)
-      end
-
-      mob_pressures = @mobilization.votes_for
-      if (mob_pressures <= 50) and (mob_pressures%10 == 0) and (DateTime.now - 1.day > @mobilization.last_sent_email) then
-        Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
-      elsif mob_pressures == 51
-        Delayed::Job.enqueue(TwoDayPressureJob.new(@mobilization.id))
-      end
-
-      redirect_to @mobilization
+    @mobilization = Mobilization.find(params[:id])
+    if !(current_user.voted_on? @mobilization) then
+      current_user.vote_for @mobilization
+      UserMailer.delay.supportMob_mail(@mobilization, current_user)
     end
+
+    mob_pressures = @mobilization.votes_for
+    if (mob_pressures <= 50) and (mob_pressures%10 == 0) and (DateTime.now - 1.day > @mobilization.last_sent_email) then
+      Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
+    elsif mob_pressures == 51
+      Delayed::Job.enqueue(TwoDayPressureJob.new(@mobilization.id))
+    end
+
+    redirect_to @mobilization
   end
 
   def showByCategory
@@ -105,11 +98,6 @@ class MobilizationsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mobilization
-      @mobilization = Mobilization.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
       params.require(:mobilization).permit(:title, :category, :description, :status, :goal, :mail_content, :target_ids  => [])
@@ -120,4 +108,19 @@ class MobilizationsController < ApplicationController
       store_location
       redirect_to "/auth/facebook" unless signed_in?
     end
+
+    def owner_user
+      set_mobilization
+      redirect_to @mobilization unless @mobilization.user_id == current_user.id
+    end
+
+    def admin_user
+      redirect_to root_url unless current_user.admin?
+    end
+
+    def complete_user
+      user_is_complete = !(current_user.email.to_s == '') and !(current_user.registration.to_s == '')
+      redirect_to edit_user_path(current_user) unless user_is_complete
+    end
+
 end

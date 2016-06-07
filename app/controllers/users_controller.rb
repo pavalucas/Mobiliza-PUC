@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user, only: [:show, :edit]
+	before_action :owner_user, only: [:show, :edit]
 
 	def show
 	    @user = current_user
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 	    	end
 	    end
   	end
+
 	def edit
   		@user = current_user
   	end
@@ -27,13 +28,11 @@ class UsersController < ApplicationController
 	  end
 
 	private
-	  	def signed_in_user
-	      store_location
-	      redirect_to "/auth/facebook" unless signed_in?
+	  	def owner_user
+	      redirect_to root_url unless params[:id] == current_user.id
 	    end
 
 	    def user_params
 	      params.require(:user).permit(:email, :registration)
 	    end
-
 end

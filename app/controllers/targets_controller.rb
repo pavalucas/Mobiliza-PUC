@@ -1,5 +1,6 @@
 class TargetsController < ApplicationController
-  before_action :set_target, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :show]
+  before_action :admin_user, only: [:edit, :new, :destroy]
 
   # GET /targets
   # GET /targets.json
@@ -62,13 +63,17 @@ class TargetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_target
-      @target = Target.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def target_params
       params.require(:target).permit(:email, :name, :role)
+    end
+
+    def admin_user
+      redirect_to root_url unless current_user.admin?
+    end
+
+    def signed_in_user
+      store_location
+      redirect_to "/auth/facebook" unless signed_in?
     end
 end
