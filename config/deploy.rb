@@ -50,5 +50,8 @@ namespace :deploy do
   end
 
   after :publishing, 'deploy:restart'
+  after 'deploy:published', 'delayed_job:restart' do
+    invoke 'delayed_job:restart'
+  end
   after :finishing, 'deploy:cleanup'
 end

@@ -36,6 +36,7 @@ group :development do
   gem 'capistrano', '~> 3.5.0'
   gem 'capistrano-rails', '~> 1.1.6'
   gem 'capistrano-passenger'
+  gem 'capistrano3-delayed-job', '~>1.0'
   gem 'capistrano-rbenv', github: "capistrano/rbenv"
   gem 'capistrano-rvm', github: "capistrano/rvm"
 end
