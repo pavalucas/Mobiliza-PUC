@@ -35,6 +35,7 @@ group :development do
   gem 'spring'
   gem 'capistrano', '~> 3.5.0'
   gem 'capistrano-rails', '~> 1.1.6'
+  gem 'capistrano-passenger'
   gem 'capistrano-rbenv', github: "capistrano/rbenv"
   gem 'capistrano-rvm', github: "capistrano/rvm"
 end
