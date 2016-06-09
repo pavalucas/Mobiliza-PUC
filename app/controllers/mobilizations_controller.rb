@@ -110,7 +110,7 @@ class MobilizationsController < ApplicationController
     end
 
     def owner_user
-      set_mobilization
+      @mobilization = Mobilization.find(params[:id])
       redirect_to @mobilization unless @mobilization.user_id == current_user.id
     end
 

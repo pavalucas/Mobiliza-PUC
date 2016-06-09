@@ -29,7 +29,8 @@ class UsersController < ApplicationController
 
 	private
 	  	def owner_user
-	      redirect_to root_url unless params[:id] == current_user.id
+	  	  byebug
+	      redirect_to root_url unless params[:id] == current_user.id.to_s
 	    end
 
 	    def user_params
