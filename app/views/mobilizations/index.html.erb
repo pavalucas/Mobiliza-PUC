@@ -9,37 +9,41 @@
   background:
     url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
 }
+.mob
+{
+  display: inline-flex;
+  padding: 20px 20px 20px 20px;
+}
 </style>
 
 <p id="notice"><%= notice %></p>
 
 <h1>Mobilizações</h1>
 
-
-<% @mobilizations.each do |mobilization| %>
   
-    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-      <div class="mdl-card__title mdl-card--expand">
-        <h2 class="mdl-card__title-text "><%= mobilization.title%></h2>
-      </div>
-      <div class="mdl-card__supporting-text ">
-        <%= mobilization.description %>
-      </div>
-      <div class="mdl-card__actions mdl-card--border ">
-      <% if mobilization.status == 0 %> <!-- Em progresso -->
-        <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green" %>
-      <% elsif mobilization.status == 1 %> <!-- Em pausa -->
-        <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--black mdl-js-button mdl-js-ripple-effect mdl-color--yellow" %>
-      <% elsif mobilization.status == 2 %><!-- Terminada -->
-        <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--cyan" %>
-      <% elsif mobilization.status == 3 %><!-- Inativa -->
-        <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>
-      <% end %>
-        
-          
+  <% @mobilizations.each do |mobilization| %>
+    <div class="mob">
+      <div class="demo-card-square mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--expand">
+          <h2 class="mdl-card__title-text "><%= mobilization.title%></h2>
+        </div>
+        <div class="mdl-card__supporting-text ">
+          <%= mobilization.description %>
+        </div>
+        <div class="mdl-card__actions  ">
+          <% if mobilization.status == 0 %> <!-- Em progresso -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green" %>
+          <% elsif mobilization.status == 1 %> <!-- Em pausa -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--black mdl-js-button mdl-js-ripple-effect mdl-color--yellow" %>
+          <% elsif mobilization.status == 2 %><!-- Terminada -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--cyan" %>
+          <% elsif mobilization.status == 3 %><!-- Inativa -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>
+          <% end %>
+        </div>
       </div>
     </div>
+  <% end %>
   
-<% end %>
 
 <br>
