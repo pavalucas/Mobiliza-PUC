@@ -9,7 +9,7 @@ class TwoDayPressureJob < Struct.new(:mobilization_id)
 	end
 
 	def queue_name
-    	'mail'
+    	'2_day_mail'
   	end
 
   	def max_attempts

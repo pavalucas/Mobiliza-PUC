@@ -8,7 +8,7 @@ class PressureTargetsJob < Struct.new(:mobilization_id)
   end
 
   def queue_name
-    'mail'
+    'pressure_mail'
   end
 
   def max_attempts
