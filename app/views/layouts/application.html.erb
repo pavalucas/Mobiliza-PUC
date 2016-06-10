@@ -29,21 +29,63 @@
     </style>
   </head>
 
+  <!-- Uses a transparent header that draws on top of the layout's background -->
+<style>
+.demo-layout-transparent {
+  background: url('../assets/demos/transparent.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+</style>
+
+  
+
+
+
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+
+    <!-- Uses a transparent header that draws on top of the layout's background -->
+    <style>
+    .demo-layout-transparent {
+      background: url('/bg.png') center / cover;
+    }
+    .demo-layout-transparent .mdl-layout__header,
+    .demo-layout-transparent .mdl-layout__drawer-button {
+      /* This background is dark, so we set text to white. Use 87% black instead if
+         your background is light. */
+      color: white;
+    }
+    </style>
 
     
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary demo-layout-transparent">
         <div id="head" class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           <img src="/mobLogo.jpg" height="200" width="300">
+          <div class="mdl-layout-spacer"></div>
+          <div>
+            <% if signed_in? %>
+              <%= button_to "Sair", signout_path, id: "sign_out", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+            <% else %>
+              <%= button_to "Entre", "/auth/facebook", id: "sign_in", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+            <% end %>
+          </div>
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
-        <div class=" mdl-js-ripple-effect mdl-color--primary-dark">
+        
+          
+
+
+          <div class=" mdl-js-ripple-effect mdl-color--primary-dark">
           
           <a href="/" class="mdl-layout__tab mdl-button">Home</a>
 
@@ -73,13 +115,7 @@
             <%= button_to "Crie a sua mobilização" , new_mobilization_path , class: "mdl-layout__tab mdl-button"%>
           <%end%>
           
-          <div>
-          <% if signed_in? %>
-            <%= button_to "Sair", signout_path, id: "sign_out", class: "mdl-layout__tab mdl-button" %>
-          <% else %>
-            <%= button_to "Entre", "/auth/facebook", id: "sign_in", class: "mdl-layout__tab mdl-button" %>
-          <% end %>
-          </div>
+          
         
          
 
@@ -87,19 +123,12 @@
         </div>
       </header>
       
-      <main class="mdl-layout__content">
+      <main class="mdl-layout__content" align="center">
 
-
+        <div align="center">
         <%= yield %>
 
-
-        <footer class="mdl-mini-footer">
-          <div class="mdl-mini-footer__left-section">
-            <div class="mdl-logo">Mobiliza Puc!</div>
-            <ul class="mdl-mini-footer__link-list">
-            </ul>
-          </div>
-        </footer>
+        <div>
 
       </main>
      
