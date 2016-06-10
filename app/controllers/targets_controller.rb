@@ -11,6 +11,7 @@ class TargetsController < ApplicationController
   # GET /targets/1
   # GET /targets/1.json
   def show
+    @target = Target.find(params[:id])
   end
 
   # GET /targets/new

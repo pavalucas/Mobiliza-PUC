@@ -6,6 +6,11 @@ set :repo_url, 'git@github.com:pavalucas/Mobiliza-PUC.git'
 
 set :passenger_restart_with_touch, true
 
+#delayed_jobs settings
+set :delayed_job_workers, 1
+
+set :delayed_job_queues, 'mail'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

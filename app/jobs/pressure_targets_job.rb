@@ -6,4 +6,12 @@ class PressureTargetsJob < Struct.new(:mobilization_id)
       UserMailer.pressure_mail(@mobilization, target).deliver_later
     end
   end
+
+  def queue_name
+    'mail'
+  end
+
+  def max_attempts
+    3
+  end
 end
