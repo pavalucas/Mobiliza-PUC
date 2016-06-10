@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "mobpuc@mobiliza.com"
+  default from: "postmaster@mobpuc.com.br"
 
   def pressure_mail(mobilization, target)
   	@mobilization = mobilization

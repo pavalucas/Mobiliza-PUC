@@ -67,12 +67,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.mailgun.org",
-    :port                 => 2525,
-    #:domain               => ENV['domain'],
-    :user_name            => ENV['username'],
-    :password             => ENV['password'],
-    :authentication       => "plain",
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => "587",
+    :user_name => Rails.application.secrets.mailgun_username,
+    :password => Rails.application.secrets.mailgun_password
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
