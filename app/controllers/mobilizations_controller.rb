@@ -54,6 +54,13 @@ class MobilizationsController < ApplicationController
     @mobilization = Mobilization.find(params[:id])
 
     if @mobilization.update_attributes(mobilization_params)
+      mobPressions = Vote.where('voteable_id = ? AND voter_id != ?', @mobilization.id, @mobilization.user_id)
+      mobPressions.each do |pression|
+        if User.where(id: pression.voter_id).present?
+          user = User.find(pression.voter_id)
+          UserMailer.delay(:queue => 'update_mail').edited_mail(@mobilization, user)
+        end
+      end
       flash[:success] = "Mobilização Atualizada"
       redirect_to @mobilization
     else
@@ -102,7 +109,6 @@ class MobilizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
       params.require(:mobilization).permit(:title, :category, :description, :goal, :status, :mail_content, :target_ids  => [])
-
     end
 
     def signed_in_user

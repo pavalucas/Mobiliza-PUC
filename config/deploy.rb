@@ -9,7 +9,7 @@ set :passenger_restart_with_touch, true
 #delayed_jobs settings
 set :delayed_job_workers, 1
 
-set :delayed_job_queues, ['pressure_mail', '2_day_mail', 'greating_mail']
+set :delayed_job_queues, ['pressure_mail', '2_day_mail', 'greating_mail', 'update_mail']
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
