@@ -111,7 +111,7 @@
 
           <div class="mdl-layout-spacer"></div>
           <% if signed_in? %>
-            <a href="" class="mdl-layout__tab mdl-button">Perfil</a>
+            <%= button_to "Perfil" , current_user, class: "mdl-layout__tab mdl-button"%>
             <%= button_to "Crie a sua mobilização" , new_mobilization_path , class: "mdl-layout__tab mdl-button"%>
           <%end%>
           
