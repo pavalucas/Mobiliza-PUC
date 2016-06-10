@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<h2><%= @mobilization.title %></h2>
 <p>
-  <strong>Título:</strong>
-  <%= @mobilization.title %>
+  <strong></strong>
+  <%= @mobilization.description %>
 </p>
 
 <p>
@@ -14,14 +15,14 @@
   <strong>Status:</strong>
   <%= $statuses[@mobilization.status] %>
 </p>
-
 <p>
-  <strong>Descrição:</strong>
-  <%= @mobilization.description %>
+  <strong>Alvos:</strong>
+  <% @mobilization.targets.each do |target| %>
+    <%= target.name %>
+  <% end %>
 </p>
-
 <p>
-  <strong>Mail content:</strong>
+  <strong>Corpo do Email:</strong>
   <%= @mobilization.mail_content %>
 </p>
 <p>
@@ -32,16 +33,10 @@
   <strong>Meta:</strong>
   <%= @mobilization.goal %>
 </p>
-<p>
-  <strong>Alvos:</strong>
-  <% @mobilization.targets.each do |target| %>
-    <%= target.name %>
-  <% end %>
-</p>
 
-<%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put %>
+
+<%= button_to 'Pressionar', press_mobilization_path(@mobilization), method: :put, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--accent" %>
 
 <% if @mobilization.user_id == @user.id %>
-|
-  <%= button_to 'Editar', edit_mobilization_path(@mobilization),  method: :get %>
+  <%= button_to 'Editar', edit_mobilization_path(@mobilization),  method: :get, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
 <% end %>

@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'mobilizations#index'
+  root 'welcome#index'
 
   match '/mobilizations/new', to:'mobilizations#new', via: [:get, :post]
   match '/users/:id',         to:'users#show',        via: [:get, :post]
+  match '/mobilizations/:id', to:'mobilizations#show',via: [:get, :post]
 
   #static pages
   match '/sobre', to: 'static_pages#sobre', via: 'get'

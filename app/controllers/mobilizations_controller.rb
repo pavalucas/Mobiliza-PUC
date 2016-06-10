@@ -10,7 +10,7 @@ class MobilizationsController < ApplicationController
   # GET /mobilizations
   # GET /mobilizations.json
   def index
-    @mobilizations = Mobilization.all
+    @mobilizations = Mobilization.all.page params[:page]
   end
 
   # GET /mobilizations/1
@@ -34,6 +34,7 @@ class MobilizationsController < ApplicationController
   # POST /mobilizations.json
   def create
     @mobilization = current_user.mobilizations.build(mobilization_params)
+    @mobilization.status = 0
 
     if @mobilization.save
       Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
@@ -100,7 +101,7 @@ class MobilizationsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def mobilization_params
-      params.require(:mobilization).permit(:title, :category, :description, :status, :goal, :mail_content, :target_ids  => [])
+      params.require(:mobilization).permit(:title, :category, :description, :goal, :status, :mail_content, :target_ids  => [])
 
     end
 

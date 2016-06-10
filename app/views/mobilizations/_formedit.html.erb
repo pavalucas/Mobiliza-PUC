@@ -13,6 +13,12 @@
       <%= f.select(:category, options_for_select([[$categories[0], 0], [$categories[1], 1], 
       [$categories[2], 2], [$categories[3], 3]])) %>
     </div>
+
+    <div style="display: inline-block" class="field">
+      <%= f.label "Status" %><br>
+      <%= f.select(:status, options_for_select([[$statuses[0], 0], [$statuses[1], 1], 
+      [$statuses[2], 2], [$statuses[3], 3]])) %>
+    </div>
   </div>
 
   <div class="mdl-textfield mdl-js-textfield">
@@ -36,8 +42,7 @@
     <%= f.text_area :mail_content, class: "mdl-textfield__input" %>
   </div>
   <div class="actions">
-    <%= f.submit "Criar!", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"%>
+    <%= f.submit "Editar", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored"%>
   </div>
-  </center>
 
 <% end %>
