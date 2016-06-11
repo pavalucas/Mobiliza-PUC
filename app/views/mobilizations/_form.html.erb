@@ -11,7 +11,7 @@
     <div style="display: inline-block" class="field">
       <%= f.label "Categoria" %><br>
       <%= f.select(:category, options_for_select([[$categories[0], 0], [$categories[1], 1], 
-      [$categories[2], 2], [$categories[3], 3]])) %>
+      [$categories[2], 2], [$categories[3], 3], [$categories[4], 4]])) %>
     </div>
   </div>
 
@@ -28,9 +28,12 @@
 
   <div class = "field">
     <%= f.label "Alvos" %><br>
-    <%= f.collection_select(:target_ids, Target.all, :id, :name, {}, {:multiple => true} ) %>
+    <% for i in 0..$qntCategories - 1 %>
+      <p><%= $categories[i] %></p>
+      <%= f.collection_select(:target_ids, Target.where(:role => $categories[i]), :id, :name, {}, {:multiple => true} ) %>
+    <% end%>  
   </div>
-  
+
   <div class="mdl-textfield mdl-js-textfield">
     <%= f.label :mail_content, "Corpo do Email", class: "mdl-textfield__label" %><br>
     <%= f.text_area :mail_content, class: "mdl-textfield__input" %>

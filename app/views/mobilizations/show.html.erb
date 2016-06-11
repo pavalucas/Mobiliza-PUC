@@ -18,7 +18,7 @@
 <p>
   <strong>Alvos:</strong>
   <% @mobilization.targets.each do |target| %>
-    <%= target.name %>
+    <%= target.name %> - <%= target.role %> <br>
   <% end %>
 </p>
 <p>
