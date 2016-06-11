@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   match '/mobilizations/new', to:'mobilizations#new', via: [:get, :post]
   match '/users/:id',         to:'users#show',        via: [:get, :post]
   match '/mobilizations/:id', to:'mobilizations#show',via: [:get, :post]
+  match '/delayed_job' => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   #static pages
   match '/sobre', to: 'static_pages#sobre', via: 'get'
   match '/regras-de-conduta', to: 'static_pages#laws', via:'get'
-  #match 'busca-por-categoria/:id/' => 'mobilizations#showByCategory', via: 'get'
   match 'busca-por-categoria/:id' => 'mobilizations#showByCategory', via: 'get'
   match 'mobs' => 'mobilizations#index', via: 'get'
 
