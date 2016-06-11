@@ -4,7 +4,8 @@ class MobilizationsController < ApplicationController
   before_action :admin_user, only: :destroy
   before_action :complete_user, only: [:new, :press]
 
-  $categories = ["Petição", "Reclamação", "Sugestão", "Outros"]
+  $qntCategories = 5
+  $categories = ["Ciclo básico Engenharia", "Ciclo profissional", "Direito", "Economia", "Outros"]
   $statuses = ["Em progresso", "Em pausa", "Terminada", "Inativa"]
 
   # GET /mobilizations

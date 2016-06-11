@@ -21,6 +21,7 @@ class TargetsController < ApplicationController
 
   # GET /targets/1/edit
   def edit
+    @target = Target.find(params[:id])
   end
 
   # POST /targets
@@ -42,14 +43,13 @@ class TargetsController < ApplicationController
   # PATCH/PUT /targets/1
   # PATCH/PUT /targets/1.json
   def update
-    respond_to do |format|
-      if @target.update(target_params)
-        format.html { redirect_to @target, notice: 'Target was successfully updated.' }
-        format.json { render :show, status: :ok, location: @target }
-      else
-        format.html { render :edit }
-        format.json { render json: @target.errors, status: :unprocessable_entity }
-      end
+    @target = Target.find(params[:id])
+
+    if @target.update_attributes(target_params)
+      
+      redirect_to @target
+    else
+      render 'edit'
     end
   end
 

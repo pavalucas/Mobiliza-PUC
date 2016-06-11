@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20160607023601) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.integer  "goal"
     t.string   "email"
     t.string   "registration"
     t.boolean  "admin",            default: false
