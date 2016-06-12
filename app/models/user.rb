@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	VALID_REGISTRARION_REGEX = /\d\d[1-2]\d+/
-	validates :email, format:     { with: VALID_EMAIL_REGEX }
-	validates :registration, uniqueness: true, length: { is: 7 }, format: {with: VALID_REGISTRARION_REGEX}
+	validates :email, uniqueness: true, format:     { with: VALID_EMAIL_REGEX }, on: :update
+	validates :registration, uniqueness: true, length: { is: 7 }, 
+			   format: {with: VALID_REGISTRARION_REGEX}, on: :update
 	acts_as_voter
 	
 	def self.from_omniauth(auth)
