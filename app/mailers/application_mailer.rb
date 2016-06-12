@@ -33,4 +33,5 @@ class ApplicationMailer < ActionMailer::Base
     @mobilization = mobilization
 
     mail(to: @user.email, subject: 'Faltam apenas 10!')
+  end
 end
