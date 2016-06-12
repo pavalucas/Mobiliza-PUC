@@ -5,7 +5,7 @@ class ApplicationMailer < ActionMailer::Base
   	@mobilization = mobilization
   	@target = target
 
-  	mail(to: @target.email, subject: 'Você está sendo pressionado!')
+  	mail(to: @target.email, subject: @mobilization.title)
   end
 
   def creation_mail(user)
