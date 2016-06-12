@@ -27,4 +27,10 @@ class ApplicationMailer < ActionMailer::Base
 
   	mail(to: @user.email, subject: 'Você pressionou uma mob!')
   end
+
+  def reachGoal_mail(mobilization, user)
+    @user = user
+    @mobilization = mobilization
+
+    mail(to: @user.email, subject: 'Faltam apenas 10!')
 end
