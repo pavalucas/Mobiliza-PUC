@@ -8,7 +8,7 @@ class EmailReceiver
     target = Target.find_by_email(@email.from[:email])
     mobilization.comments.create!(
       commenter_id: target.id,
-      commenter_type: target.class,
+      commenter_type: "Target",
       content: @email.body
     )
   end

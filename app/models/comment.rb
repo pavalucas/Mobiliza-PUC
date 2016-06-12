@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+	belongs_to :mobilization
 	belongs_to :commenter, :polymorphic => true
 
 	validates :commenter_id, presence: true
