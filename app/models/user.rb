@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
 	has_many :mobilizations, dependent: :destroy
-	# VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	# validates :email, format:     { with: VALID_EMAIL_REGEX }
- #    validates :registration, length: { maximum: 7, minimum: 7 }
+	has_many :comments, :as => :commenter
+
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	VALID_REGISTRARION_REGEX = /\d\d[1-2]\d+/
+	validates :email, uniqueness: true, format:     { with: VALID_EMAIL_REGEX }
+	validates :registration, uniqueness: true, length: { is: 7 }, format: {with: VALID_REGISTRARION_REGEX}
 	acts_as_voter
 	
 	def self.from_omniauth(auth)

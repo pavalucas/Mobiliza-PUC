@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607023601) do
+ActiveRecord::Schema.define(version: 20160612031659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "commenter_id"
+    t.string   "commenter_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -69,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160607023601) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "goal"
     t.string   "email"
     t.string   "registration"
     t.boolean  "admin",            default: false

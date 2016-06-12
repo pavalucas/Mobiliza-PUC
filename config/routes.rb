@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   resources :targets
   resources :mobilizations do
     member do
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
 
   match '/mobilizations/new', to:'mobilizations#new', via: [:get, :post]
   match '/users/:id',         to:'users#show',        via: [:get, :post]

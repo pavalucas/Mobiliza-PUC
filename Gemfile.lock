@@ -104,7 +104,13 @@ GEM
       multipart-post (>= 1.2, < 3)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    griddler (1.1.1)
+      htmlentities
+      rails (>= 3.2.0)
+    griddler-mailgun (1.0.3)
+      griddler
     hashie (3.4.4)
+    htmlentities (4.3.4)
     httpauth (0.2.1)
     i18n (0.7.0)
     jbuilder (2.4.1)
@@ -251,6 +257,8 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   delayed_job_web
+  griddler (~> 1.1.0)
+  griddler-mailgun (~> 1.0.3)
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
