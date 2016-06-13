@@ -44,13 +44,15 @@
     </p>
   </div>
   <div style = "float: right;">
-    <h4> Respostas dos Pressionados </h4>
-    <% @mobilization.comments.each do |comment| %>
-      <p>
-        <strong><%= Target.find(comment.commenter_id).name%> (<%= comment.created_at%>):</strong>
-        <br>
-        <%= comment.content %>
-      </p>
+    <% if @mobilization.comments.any? %>
+      <h4> Respostas dos Pressionados </h4>
+      <% @mobilization.comments.each do |comment| %>
+        <p>
+          <strong><%= Target.find(comment.commenter_id).name%> (<%= comment.created_at%>):</strong>
+          <br>
+          <%= comment.content %>
+        </p>
+      <%end%>
     <%end%>
   </div>
 </div>
