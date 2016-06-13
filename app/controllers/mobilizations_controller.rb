@@ -101,11 +101,9 @@ class MobilizationsController < ApplicationController
 
   def showByCategory
     id = Integer(params[:id])
-    if id>=0 and id <4
-      @mobilizations = Mobilization.where(:category => id)
-    else
-      redirect_to "/"
-    end
+    @targets = Target.where(role: $categories[id])
+    @mobilizations = Mobilization.all.where(:target_ids => @target)
+
   end
 
 

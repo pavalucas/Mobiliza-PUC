@@ -7,6 +7,5 @@ class Mobilization < ActiveRecord::Base
 	paginates_per 9
 	validates :title, uniqueness: true
 	validates :goal, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 25 }
-	validates :category, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
 	validates :status, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
 end

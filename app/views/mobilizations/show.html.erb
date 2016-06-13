@@ -10,8 +10,14 @@
       <%= @mobilization.description %>
     </p>
     <p>
-      <strong>Categoria:</strong>
-      <%= $categories[@mobilization.category] %>
+      <strong>Categorias:</strong>
+      <% roles = Array[] %>
+      <% @mobilization.targets.each do |target| %>
+        <% if !(roles.include?(target.role)) %>
+          <%= target.role %> <br>
+          <% roles.push(target.role) %>
+        <% end %>
+      <% end %>
     </p>
 
     <p>

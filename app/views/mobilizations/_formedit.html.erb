@@ -9,12 +9,6 @@
 
   <div style="width: 500px">
     <div style="display: inline-block" class="field">
-      <%= f.label "Categoria" %><br>
-      <%= f.select(:category, options_for_select([[$categories[0], 0], [$categories[1], 1], 
-      [$categories[2], 2], [$categories[3], 3], [$categories[4], 4]])) %>
-    </div>
-
-    <div style="display: inline-block" class="field">
       <%= f.label "Status" %><br>
       <%= f.select(:status, options_for_select([[$statuses[0], 0], [$statuses[1], 1], 
       [$statuses[2], 2], [$statuses[3], 3]])) %>
