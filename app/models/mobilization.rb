@@ -1,7 +1,7 @@
 class Mobilization < ActiveRecord::Base
 	belongs_to :user
 	has_and_belongs_to_many :targets
-	has_many :comments, dependent :destroy
+	has_many :comments, dependent: :destroy
 	validates :user_id, presence: true
 	acts_as_voteable
 	paginates_per 9
