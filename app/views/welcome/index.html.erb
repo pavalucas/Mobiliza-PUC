@@ -31,10 +31,13 @@
             <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green" %>
           <% elsif mobilization.status == 1 %> <!-- Em pausa -->
             <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--black mdl-js-button mdl-js-ripple-effect mdl-color--yellow" %>
-          <% elsif mobilization.status == 2 %><!-- Terminada -->
+          <% elsif mobilization.status == 2 %><!-- Deu certo -->
             <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--cyan" %>
-          <% elsif mobilization.status == 3 %><!-- Inativa -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>
+          <% elsif mobilization.status == 3 %><!-- Não foi dessa vez -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--red" 
+            %>
+          <% elsif mobilization.status == 4 %><!-- Inativa -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %> 
           <% end %>
         </div>
       </div>

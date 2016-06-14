@@ -6,7 +6,7 @@ class MobilizationsController < ApplicationController
 
   $qntCategories = 5
   $categories = ["Ciclo Básico Engenharia", "Ciclo Profissional", "Direito", "Economia", "Outros"]
-  $statuses = ["Em progresso", "Em pausa", "Terminada", "Inativa"]
+  $statuses = ["Em progresso", "Em pausa", "Deu certo", "Não foi dessa vez", "Inativa"]
 
   # GET /mobilizations
   # GET /mobilizations.json
