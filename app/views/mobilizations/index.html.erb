@@ -28,7 +28,7 @@
           <h2 class="mdl-card__title-text "><%= mobilization.title%></h2>
         </div>
         <div class="mdl-card__supporting-text ">
-          <%= mobilization.description %>
+          <%= mobilization.description[0..20] + "..." %>
         </div>
         <div class="mdl-card__actions  ">
           <% if mobilization.status == 0 %> <!-- Em progresso -->
