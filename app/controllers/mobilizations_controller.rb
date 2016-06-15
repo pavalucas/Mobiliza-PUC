@@ -41,8 +41,8 @@ class MobilizationsController < ApplicationController
       Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
       UserMailer.delay(:queue => 'greating_mail').creation_mail(current_user)
       @mobilization.last_sent_email = DateTime.now - 1.day
-      flash[:success] = "Moblização criada!"
       current_user.vote_for @mobilization
+      flash[:success] = "Moblização criada!"
       redirect_to @mobilization
     else
       render 'new'

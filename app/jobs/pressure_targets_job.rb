@@ -1,8 +1,4 @@
-class PressureTargetsJob
-
-  def initialize(mob_id)
-    self.mobilization_id = mob_id
-  end
+class PressureTargetsJob < Struct.new(:mobilization_id)
   
   def perform
   	@mobilization = Mobilization.find(mobilization_id)
