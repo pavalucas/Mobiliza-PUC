@@ -1,3 +1,111 @@
 // Place all the styles related to the Mobilizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+.mob
+{
+  display: inline-flex;
+  padding: 20px 20px 20px 20px;
+}
+
+.mobilization-card-container {
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+
+.mobilization-card {
+
+	position:relative;
+	height:320px;
+	width:320px;	
+	text-align:center;
+	background:#46B6AC;
+	margin:15pt;
+	box-shadow: 0px 2px 6px #888888;
+	border: 0px solid;
+	border-radius: 5px;
+	overflow:hidden;
+
+	.title {
+		color:#333;
+		max-width: 320px;
+		margin:auto;
+
+		h2 {
+			max-width:  90%;
+			margin:auto;
+		}
+	}
+
+	.description {
+
+		display: -webkit-box;
+		height:50%;
+		position:absolute;
+		bottom:0px;
+		width:100%;
+		background:#FFF;
+		padding:5px;
+
+		h5 {
+
+			height: 50%;
+			width:90%;
+			margin:auto;
+			text-overflow: ellipsis;
+			-webkit-line-clamp: 4;
+			 -webkit-box-orient: vertical;
+			 overflow: hidden;
+		}
+	}
+
+	.open-mobilization-button {
+
+		position:absolute;
+		left:124px;
+		bottom:10px;
+		margin:auto;
+	}
+}
+
+.mobilization-card:hover{
+
+   box-shadow: 0px 2px 10px #444444;
+}
+
+.progress {
+
+	position:relative;
+	height:30px;
+	display: flex;
+	align-items: center; 
+
+	#label {
+
+		position:absolute;
+		width: 100%;
+		font-size:16pt;
+		top:5px;
+		font-weight: bold;
+		text-align:center;
+		color:#444;
+		text-shadow:
+		   -0.5px -0.5px 0 #F5F5F5,  
+		    0.5px -0.5px 0 #F5F5F5,
+		    -0.5px 0.5px 0 #F5F5F5,
+		     0.5px 0.5px 0 #F5F5F5;
+		// margin:auto;
+	}
+}
