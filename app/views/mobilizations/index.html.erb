@@ -31,9 +31,7 @@
           <% $percentage = (mobilization.votes.count * 100) /  mobilization.goal %>
 
             <div class="progress">
-              <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<%= $percentage %>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= $percentage %>%;">
-                <%= $percentage %>%
-              </div>
+              <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<%= $percentage %>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= $percentage %>%;"><div id="label"><%= $percentage %>%</div></div>
             </div>
 
             <div class="title"><h2><%= mobilization.title %></h2></div>
