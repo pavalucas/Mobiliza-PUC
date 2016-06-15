@@ -1,4 +1,5 @@
 class TwoDayPressureJob < Struct.new(:mobilization_id)
+  	
 	def perform
 		@mobilization = Mobilization.find(mobilization_id)
 		@mobilization.last_sent_email = DateTime.now
