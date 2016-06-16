@@ -26,6 +26,10 @@
       {
         padding-left: 25px;
       }
+      #logo
+      {
+        margin-left: 40%;
+      }
     </style>
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -34,8 +38,8 @@
         <div id="head" class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div align="center">
-          <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-            <a href="/"> <img src="/mobLogo.jpg" height="200" width="300"> </a>
+          <div align="center" class="mdl-layout--large-screen-only mdl-layout__header-row">
+            <a href="/" id="logo"> <img src="/mobLogo.jpg" height="200" width="300"> </a>
             <div class="mdl-layout-spacer"></div>
             <div>
               <% if signed_in? %>
