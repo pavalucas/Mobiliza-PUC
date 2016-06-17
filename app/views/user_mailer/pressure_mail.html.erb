@@ -4,12 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h2>Olá! Você foi marcado em uma mobilização! O Mob Puc é uma plataforma independente de alunos da PUC-Rio para resolverem solicitações e problemas dentro da PUC-Rio, juntando-se por causas em comum. Se quiser saber mais, vá aqui: http://mobpuc.com.br/sobre</h2>
-    <h3> <%= @mobilization.title %> </h3>
+    <h1><%= @target.name %>, parece que alguns estudantes te marcaram em uma mobilização</h1>
+    <h2> <%= @mobilization.title %> </h2>
     <p> <%= @mobilization.mail_content %> </p><br>
     <p>_________________________________________</p>
-    <p>Se desejar comunicar algo aos alunos desta mobilização basta responder este email!</p>
-    <p>Assim sua resposta será postada automaticamente na página!</p>
+    <p>Para entrar no site: www.mobpuc.com.br</p>
     <p>Obrigado!</p>
   </body>
 </html>

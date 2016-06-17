@@ -6,7 +6,7 @@ class MobilizationsController < ApplicationController
 
   $qntCategories = 5
   $categories = ["Ciclo Básico Engenharia", "Ciclo Profissional", "Direito", "Economia", "Outros"]
-  $statuses = ["Em progresso", "Em pausa", "Deu certo", "Não foi dessa vez", "Inativa"]
+  $statuses = ["Em progresso", "Em pausa", "Terminada", "Inativa"]
 
   # GET /mobilizations
   # GET /mobilizations.json
@@ -41,8 +41,8 @@ class MobilizationsController < ApplicationController
       Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
       UserMailer.delay(:queue => 'greating_mail').creation_mail(current_user)
       @mobilization.last_sent_email = DateTime.now - 1.day
-      current_user.vote_for @mobilization
       flash[:success] = "Moblização criada!"
+      current_user.vote_for @mobilization
       redirect_to @mobilization
     else
       render 'new'

@@ -1,11 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "mobiliza@mobpuc.com.br"
-
-  def damn(email, assunto, conteudo)
-    @subject = assunto
-    @content = conteudo
-    mail(to: email, subject: assunto)
-  end
+  default from: "postmaster@mobpuc.com.br"
 
   def pressure_mail(mobilization, target)
   	@mobilization = mobilization

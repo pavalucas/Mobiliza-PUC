@@ -40,5 +40,3 @@ group :development do
   gem 'capistrano-rvm', github: "capistrano/rvm"
 end
 
-gem 'rails_12factor', group: :production
-
