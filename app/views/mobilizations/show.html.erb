@@ -58,11 +58,10 @@
 </div>
 
 <div style="clear:left;">
+
 <%= button_to 'Apoiar', press_mobilization_path(@mobilization), method: :put, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--accent" %>
 <br>
 <% if @mobilization.user_id == @user.id %>
   <%= button_to 'Editar', edit_mobilization_path(@mobilization),  method: :get, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
 <% end %>
 </div>
-<br>
-

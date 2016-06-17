@@ -21,32 +21,36 @@
 <h1>Mobilizações</h1>
 
   
-  <% @mobilizations.each do |mobilization| %>
-    <div class="mob">
-      <div class="demo-card-square mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title mdl-card--expand">
-          <h2 class="mdl-card__title-text "><%= mobilization.title%></h2>
-        </div>
-        <div class="mdl-card__supporting-text ">
-          <%= mobilization.description[0..20] + "..." %>
-        </div>
-        <div class="mdl-card__actions  ">
-          <% if mobilization.status == 0 %> <!-- Em progresso -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green" %>
+  <div class="mobilization-card-container">
+
+    <% @mobilizations.each do |mobilization| %>
+    <% if mobilization == nil then break end %>
+
+        <div class="mobilization-card">
+
+          <% $percentage = (mobilization.votes.count * 100) /  mobilization.goal %>
+
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<%= $percentage %>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= $percentage %>%;"><div id="label"><%= $percentage %>%</div></div>
+            </div>
+
+            <div class="title"><h2><%= mobilization.title %></h2></div>
+            <div class="description"><h5><%= mobilization.description %></h5></div>
+
+            <% if mobilization.status == 0 %> <!-- Em progresso -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green open-mobilization-button" %>
           <% elsif mobilization.status == 1 %> <!-- Em pausa -->
             <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--black mdl-js-button mdl-js-ripple-effect mdl-color--yellow" %>
-          <% elsif mobilization.status == 2 %><!-- Deu certo -->
+          <% elsif mobilization.status == 2 %><!-- Terminada -->
             <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--cyan" %>
-          <% elsif mobilization.status == 3 %><!-- Não foi dessa vez -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--red" 
-            %>
-          <% elsif mobilization.status == 4 %><!-- Inativa -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>  
+          <% elsif mobilization.status == 3 %><!-- Inativa -->
+            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>
           <% end %>
         </div>
-      </div>
-    </div>
-  <% end %>
+
+   <% end %>
+
+  </div>
   
 
 <br>

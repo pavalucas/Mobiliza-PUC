@@ -10,7 +10,9 @@
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-blue.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css">
+    
+  <%= stylesheet_link_tag "application", :media => "all" %>
     
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   </head>
@@ -72,22 +74,21 @@
           <a href="/busca-por-categoria/4" class="mdl-menu__item">Outros</a>-->
         </ul>
 
-        <a href="/sobre" class="mdl-layout__tab mdl-button">Sobre</a>
-        <a href="/regras-de-conduta" class="mdl-layout__tab mdl-button">Regras</a>
-
         <div class="mdl-layout-spacer"></div>
         <% if signed_in? %>
+        <%= button_to "Crie a sua mobilização" , new_mobilization_path , class: "mdl-layout__tab mdl-button"%>
           <%= button_to "Perfil" , current_user, class: "mdl-layout__tab mdl-button"%>
-          <%= button_to "Crie a sua mobilização" , new_mobilization_path , class: "mdl-layout__tab mdl-button"%>
         <%end%>
+
+       <a href="/regras-de-conduta" class="mdl-layout__tab mdl-button">Regras</a>
+        <a href="/sobre" class="mdl-layout__tab mdl-button">Sobre</a>
+
       </div>
       </header>
 
        
         <div >
-          <div class="padLeft">
             <%= yield %>
-          </div>
         </div>
         
      
