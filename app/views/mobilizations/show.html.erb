@@ -43,6 +43,8 @@
       <%= @mobilization.goal %>
     </p>
   </div>
+
+  <!-- Show targets responses if any -->
   <div style = "float: right;">
     <% if @mobilization.comments.any? %>
       <h4> Respostas dos Pressionados </h4>
@@ -55,13 +57,25 @@
       <%end%>
     <%end%>
   </div>
+
 </div>
 
 <div style="clear:left;">
 
-<%= button_to 'Apoiar', press_mobilization_path(@mobilization), method: :put, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--accent" %>
-<br>
+<!-- Disable button if already voted -->
+<%if !current_user.voted_on?(@mobilization)%>
+  <%= button_to 'Apoiar', press_mobilization_path(@mobilization), method: :put, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--accent" %>
+<%else%>
+  <button class="mdl-button mdl-js-button mdl-button--raised" disabled>
+    Apoiar
+  </button>
+<%end%>
+
+<br><br>
+
+<!-- Show edit button for owner of mob user -->
 <% if @mobilization.user_id == @user.id %>
   <%= button_to 'Editar', edit_mobilization_path(@mobilization),  method: :get, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
 <% end %>
 </div>
+<br>

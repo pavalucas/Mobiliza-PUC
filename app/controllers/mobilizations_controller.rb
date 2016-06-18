@@ -81,23 +81,29 @@ class MobilizationsController < ApplicationController
 
   def press
     @mobilization = Mobilization.find(params[:id])
+
+    #Only enter condition if current user haven't already voted for this mob
     if !(current_user.voted_on? @mobilization) then
+      #Upvoting the mob (pressuring) and sending email to the voter
       current_user.vote_for @mobilization
       UserMailer.delay(:queue => 'greating_mail').supportMob_mail(@mobilization, current_user)
+
+      #Send email if mob gets 10 reaches in the day
+      #Or send every two days if it has more than 50 pressures
+      mob_pressures = @mobilization.votes_for
+      if (mob_pressures <= 50) and (mob_pressures%10 == 0) and (DateTime.now - 1.day > @mobilization.last_sent_email) then
+        Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
+      elsif mob_pressures == 51
+        Delayed::Job.enqueue(TwoDayPressureJob.new(@mobilization.id))
+      end
+      
+      #Send email to creator if goal is reached or 10-close to reach
+      distanceToGoal = mob_pressures - @mobilization.goal
+      if distanceToGoal == 10 or distanceToGoal == 0
+        UserMailer.delay(:queue => 'greating_mail').reachGoal_mail(@mobilization, distanceToGoal)
+      end
     end
 
-    mob_pressures = @mobilization.votes_for
-    if (mob_pressures <= 50) and (mob_pressures%10 == 0) and (DateTime.now - 1.day > @mobilization.last_sent_email) then
-      Delayed::Job.enqueue(PressureTargetsJob.new(@mobilization.id))
-    elsif mob_pressures == 51
-      Delayed::Job.enqueue(TwoDayPressureJob.new(@mobilization.id))
-    end
-
-    distanceToGoal = mob_pressures - @mobilization.goal
-    if distanceToGoal == 10 or distanceToGoal == 0
-      UserMailer.delay(:queue => 'greating_mail').reachGoal_mail(@mobilization, distanceToGoal)
-    end
-    
     redirect_to @mobilization
   end
 
