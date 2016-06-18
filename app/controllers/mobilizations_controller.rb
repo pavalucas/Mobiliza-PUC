@@ -93,9 +93,11 @@ class MobilizationsController < ApplicationController
       Delayed::Job.enqueue(TwoDayPressureJob.new(@mobilization.id))
     end
 
-    if mob_pressures - @mobilization.goal == 10
-      UserMailer.delay(:queue => 'greating_mail').reachGoal_mail(@mobilization, current_user)
+    distanceToGoal = mob_pressures - @mobilization.goal
+    if distanceToGoal == 10 or distanceToGoal == 0
+      UserMailer.delay(:queue => 'greating_mail').reachGoal_mail(@mobilization, distanceToGoal)
     end
+    
     redirect_to @mobilization
   end
 
@@ -103,7 +105,6 @@ class MobilizationsController < ApplicationController
     id = Integer(params[:id])
     @targets = Target.where(role: $categories[id])
     @mobilizations = Mobilization.all.where(:target_ids => @target)
-
   end
 
 
