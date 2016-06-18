@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery.textfill.min
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require material
 //= require_tree .

@@ -40,18 +40,22 @@
               <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<%= $percentage %>" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= $percentage %>%;"><div id="label"><%= $percentage %>%</div></div>
             </div>
 
-            <div class="title"><h2><%= mobilization.title %></h2></div>
-            <div class="description"><h5><%= mobilization.description %></h5></div>
+<!-- Dada a existência conforme se comprove de recentes trabalhos públicos de Puncher e Wattman de um Deus pessoal quaquaquaqua de barbas brancas quaquaquaqua -->
 
-            <% if mobilization.status == 0 %> <!-- Em progresso -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green open-mobilization-button" %>
-          <% elsif mobilization.status == 1 %> <!-- Em pausa -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--black mdl-js-button mdl-js-ripple-effect mdl-color--yellow" %>
-          <% elsif mobilization.status == 2 %><!-- Terminada -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--cyan" %>
-          <% elsif mobilization.status == 3 %><!-- Inativa -->
-            <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>
-          <% end %>
+            <div class="title"><span><%= mobilization.title %></span></div>
+            <div class="description"><h5><%= mobilization.description %></h5></div>
+            <div class="open-mobilization-button-container">
+              <% if mobilization.status == 0 %> <!-- Em progresso -->
+                <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--light-green open-mobilization-button" %>
+              <% elsif mobilization.status == 1 %> <!-- Em pausa -->
+                <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--black mdl-js-button mdl-js-ripple-effect mdl-color--yellow" %>
+              <% elsif mobilization.status == 2 %><!-- Terminada -->
+                <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--cyan" %>
+              <% elsif mobilization.status == 3 %><!-- Inativa -->
+                <%= button_to 'Abrir', mobilization, class:"mdl-button mdl-color-text--white mdl-js-button mdl-js-ripple-effect mdl-color--grey" %>
+              <% end %>
+            </div>
+
         </div>
 
    <% end %>
@@ -59,4 +63,12 @@
   </div>
 
   </div>
+
+  <script type="text/javascript">
+
+
+  resizeText();
+
+  </script>
+
 
