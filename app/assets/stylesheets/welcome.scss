@@ -4,20 +4,30 @@
 
 .main-banner {
 	width:100%;
-	height: 320px;
-      padding-top:50px;
+      height:320px;
+      padding-top:25px;
       text-align: center;
       background:#46B6AC;
+      min-width:800px;
 
       .main-banner-container {
         margin-left:auto;
         margin-right:auto;
-        width:1000px;
+        width:100%;
         height:250px;
+
+        .main-banner-item {
+
+          height:auto;
+          width: 22%;
+          margin:10px;
+          display: inline-block;
+        }
 
         img {
 
-          max-width: 150px;
+          width:150px;
+          height:auto;
         }
 
         .main-banner-item-description {

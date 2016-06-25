@@ -27,23 +27,53 @@
 
 .mobilization-card {
 
+	background:#46B6AC;
 	position:relative;
-	height:320px;
+	height:350px;
 	width:320px;	
 	text-align:center;
-	background:#46B6AC;
 	margin:15pt;
 	box-shadow: 0px 2px 6px #888888;
 	border: 0px solid;
 	border-radius: 5px;
 	overflow:hidden;
+	cursor: pointer; cursor: hand; 
+
+	.progress {
+
+		position:relative;
+		height:10%;
+		display: flex;
+		align-items: center; 
+		margin:0px;
+
+		#label {
+
+			position:absolute;
+			width: 100%;
+			font-size:14pt;
+			top:2.5px;
+			font-weight: bold;
+			text-align:center;
+			color:#444;
+			text-shadow:
+			   -0.5px -0.5px 0 #F5F5F5,  
+			    0.5px -0.5px 0 #F5F5F5,
+			    -0.5px 0.5px 0 #F5F5F5,
+			     0.5px 0.5px 0 #F5F5F5;
+			// margin:auto;
+		}
+	}
 
 	.title {
+		padding:20px;
+		background:#46B6AC;
 		color:#f5f5f5;
-		max-width: 320px;
 		margin:auto;
+		height:50%;
 
-		h2 {
+		span {
+			font-size:24px;
 			max-width:  90%;
 			margin:auto;
 		}
@@ -52,60 +82,32 @@
 	.description {
 
 		display: -webkit-box;
-		height:50%;
-		position:absolute;
-		bottom:0px;
 		width:100%;
-		background:#FFF;
+		background:#F5F5F5;
 		padding:5px;
+		margin-top:5px;
+		height:29%;
+		padding:10px;
 
 		h5 {
 
-			height: 50%;
 			width:90%;
 			margin:auto;
 			text-overflow: ellipsis;
-			-webkit-line-clamp: 4;
+			-webkit-line-clamp: 5;
 			 -webkit-box-orient: vertical;
 			 overflow: hidden;
 		}
 	}
 
-	.open-mobilization-button {
+	.open-mobilization-button-container {
 
-		position:absolute;
-		left:124px;
-		bottom:10px;
-		margin:auto;
+		width:100%;
+		background-color:#F5F5F5;
 	}
 }
 
 .mobilization-card:hover{
 
    box-shadow: 0px 2px 10px #444444;
-}
-
-.progress {
-
-	position:relative;
-	height:30px;
-	display: flex;
-	align-items: center; 
-
-	#label {
-
-		position:absolute;
-		width: 100%;
-		font-size:16pt;
-		top:5px;
-		font-weight: bold;
-		text-align:center;
-		color:#444;
-		text-shadow:
-		   -0.5px -0.5px 0 #F5F5F5,  
-		    0.5px -0.5px 0 #F5F5F5,
-		    -0.5px 0.5px 0 #F5F5F5,
-		     0.5px 0.5px 0 #F5F5F5;
-		// margin:auto;
-	}
 }
